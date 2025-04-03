@@ -48,7 +48,7 @@ async function init() {
     camera.add(pointLight);
 
     const loader = new GLTFLoader();
-    const gltf = await loader.loadAsync('/models/3D/scene.gltf');
+    const gltf = await loader.loadAsync('./models/3D/scene.gltf');
 
     const model = gltf.scene;
     scene.add(model);
