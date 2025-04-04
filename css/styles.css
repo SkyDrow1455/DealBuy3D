@@ -10871,7 +10871,7 @@ canvas{
 
 @font-face {
   font-family: "MiFuente";
-  src: url('./Fonts/NauSea.otf') format('opentype');
+  src: url('../Fonts/NauSea.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
