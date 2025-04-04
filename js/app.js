@@ -14,7 +14,7 @@ import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 let camera, composer, renderer;
 let mouseX = 0, mouseY = 0;
 let targetX = 0, targetY = 0;
-const smoothingFactor = 0.05; // Suavidad del movimiento
+const smoothingFactor = 0.03; // Suavidad del movimiento
 
 const params = {
     threshold: 1,
@@ -29,9 +29,10 @@ async function init() {
     const container = document.getElementById('container');
 
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x000000);
 
     camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 100);
-    camera.position.set(8, 6, 8);
+    camera.position.set(-6, 6, 6);
     camera.lookAt(0, 4.5, 0);
     scene.add(camera);
 
@@ -55,7 +56,7 @@ async function init() {
 
     // Texto
     const fontLoader = new FontLoader();
-    fontLoader.load('/Fonts/NauSeaTitle.json', (font) => {
+    fontLoader.load('./Fonts/NauSeaTitle.json', (font) => {
         const textGeometry = new TextGeometry('Deal Buy', {
             font: font,
             size: 1, 
@@ -147,10 +148,11 @@ function animate() {
     targetY += (mouseY - targetY) * smoothingFactor;
 
     // Mover la cámara en los ejes X e Y
-    camera.position.x = 8 + targetX * 3; 
-    camera.position.y = 6 + targetY * 3;
+    camera.position.x = 5 + targetX * 3; 
+    camera.position.y = 5 + targetY * 3;
+    camera.position.z = 6; // Mantener la distancia en Z
 
-    camera.lookAt(0, 4.5, 0); // Mantener la vista fija en el centro
+    camera.lookAt(-1, 4.5, -1); // Mantener la vista fija en el centro
 
     composer.render();
 }
